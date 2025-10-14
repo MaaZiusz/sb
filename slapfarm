@@ -1,0 +1,64 @@
+local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
+
+local Window = OrionLib:MakeWindow({Name = "Slap Farm", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+	Name = "Slap Farm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "Add Walls",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/MaaZiusz/sb/refs/heads/main/eternalbobbox"))()
+  	end    
+})
+
+Tab:AddDropdown({
+	Name = "Select you're glove (IMPORTANT)",
+	Default = "Killstreak",
+	Options = {"Killstreak", "Reaper", "God's Hand", "Tycoon"},
+	Callback = function(Value)
+SlapFarmGlove = Value
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Slap Farm",
+	Default = false,
+	Callback = function(Value)
+            _G.SlapBobClone = Value
+            while _G.SlapBobClone do
+                if game.Workspace:FindFirstChild("BobClone") then
+                    for _, v in pairs(workspace:GetChildren()) do
+                        if v.Name == "BobClone" then
+                            if GloveSlap == "Killstreak" then
+                                game:GetService("ReplicatedStorage").KSHit:FireServer(
+                                    v:FindFirstChild("HumanoidRootPart")
+                                )
+                            elseif GloveSlap == "Reaper" then
+                                game:GetService("ReplicatedStorage").ReaperHit:FireServer(
+                                    v:FindFirstChild("HumanoidRootPart")
+                                )
+                            elseif GloveSlap == "God's Hand" then
+                                game:GetService("ReplicatedStorage").Godshand:FireServer(
+                                    v:FindFirstChild("HumanoidRootPart")
+                                )
+                            elseif GloveSlap == "Tycoon" then
+                                game:GetService("ReplicatedStorage").GeneralHit:FireServer(
+                                    v:FindFirstChild("HumanoidRootPart")
+                                )
+                            end
+                        end
+                    end
+                end
+                task.wait(.01)
+            end
+        end
+    }
+)
+
+
+
+
