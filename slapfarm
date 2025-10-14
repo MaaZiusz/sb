@@ -33,19 +33,19 @@ Tab:AddToggle({
                 if game.Workspace:FindFirstChild("BobClone") then
                     for _, v in pairs(workspace:GetChildren()) do
                         if v.Name == "BobClone" then
-                            if GloveSlap == "Killstreak" then
+                            if SlapFarmGlove == "Killstreak" then
                                 game:GetService("ReplicatedStorage").KSHit:FireServer(
                                     v:FindFirstChild("HumanoidRootPart")
                                 )
-                            elseif GloveSlap == "Reaper" then
+                            elseif SlapFarmGlove == "Reaper" then
                                 game:GetService("ReplicatedStorage").ReaperHit:FireServer(
                                     v:FindFirstChild("HumanoidRootPart")
                                 )
-                            elseif GloveSlap == "God's Hand" then
+                            elseif SlapFarmGlove == "God's Hand" then
                                 game:GetService("ReplicatedStorage").Godshand:FireServer(
                                     v:FindFirstChild("HumanoidRootPart")
                                 )
-                            elseif GloveSlap == "Tycoon" then
+                            elseif SlapFarmGlove == "Tycoon" then
                                 game:GetService("ReplicatedStorage").GeneralHit:FireServer(
                                     v:FindFirstChild("HumanoidRootPart")
                                 )
