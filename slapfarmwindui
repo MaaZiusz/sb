@@ -1,0 +1,154 @@
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+
+local Window = WindUI:CreateWindow({
+    Title = "Eternal Bob Hub",
+    Icon = "door-open", -- lucide icon
+    Author = "by Sarkanic",
+    Folder = "EternalBobHub",
+
+
+
+    
+
+
+    User = {
+        Enabled = true,
+        Anonymous = false,
+        Callback = function()
+            print("clicked")
+        end,
+    },
+    
+    --       remove this all, 
+    -- !  ↓  if you DON'T need the key system
+    KeySystem = { 
+        -- ↓ Optional. You can remove it.
+        Key = { "admin" },
+        
+        Note = "Key System.",
+    }
+
+})
+
+if workspace:FindFirstChild("VoidPart") == nil then
+local VoidPart = Instance.new("Part", workspace)
+VoidPart.Name = "VoidPart"
+VoidPart.Position = Vector3.new(-36, -3, 16)
+VoidPart.Size = Vector3.new(2000, 1, 2000)
+VoidPart.Anchored = true
+VoidPart.Transparency = 1
+VoidPart.CanCollide = false
+end
+
+local Main = Window:Tab({
+    Title = "Main",
+    Icon = "house", -- optional
+    Locked = false,
+})
+
+local Farm = Window:Tab({
+    Title = "Slap Farm",
+    Icon = "hand", -- optional
+    Locked = false,
+})
+
+local SlapEBob = Main:Toggle({
+    Title = "Slap Eternal Bob",
+    Desc = "Automatically slaps Eternal Bob",
+    Icon = "check",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(Value) 
+        _G.DameBossBob = Value
+while _G.DameBossBob do
+game.Workspace.bobBoss.DamageEvent:FireServer()
+task.wait()
+end
+	end    
+})
+
+local RemoveRing = Main:Toggle({
+    Title = "Remove Rings",
+    Desc = "Removes Rings",
+    Icon = "check",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(Value) 
+		_G.AntiRing = Value
+while _G.AntiRing do
+if game.Workspace:FindFirstChild("Ring") then
+game.Workspace:FindFirstChild("Ring"):Destroy()
+end
+task.wait()
+end
+    end
+})
+
+
+
+
+
+
+
+local walls = Farm:Button({
+    Title = "Add Walls",
+    Desc = "Adds walls, so the minions dont fall through so u can slap farm infinitely",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/MaaZiusz/sb/refs/heads/main/eternalbobbox"))()
+    end
+})
+
+local GloveSelect = Farm:Dropdown({
+    Title = "Select your glove (IMPORTANT)",
+    Values = { "Killstreak", "Reaper", "Tycoon", "God's Hand" },
+    Value = "Tycoon",
+    Callback = function(option)
+GloveSlap = option
+    end
+})
+
+
+local AutoSlapBob = Farm:Toggle({
+    Title = "Auto Slap Eternal Bob",
+    Desc = "Automatically slaps Eternal Bob",
+    Icon = "check",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(Value)
+        		_G.SlapBobClone = Value
+while _G.SlapBobClone do
+if GloveSlap == "Killstreak" then
+for _, v in ipairs(workspace:GetDescendants()) do
+if v.Name == "BobClone" then
+game:GetService("ReplicatedStorage").KSHit:FireServer(v:FindFirstChild("HumanoidRootPart"))
+end
+end
+elseif GloveSlap == "Reaper" then
+for _, v in ipairs(workspace:GetDescendants()) do
+if v.Name == "BobClone" then
+game:GetService("ReplicatedStorage").ReaperHit:FireServer(v:FindFirstChild("HumanoidRootPart"))
+end
+end
+elseif GloveSlap == "God's Hand" then
+for _, v in ipairs(workspace:GetDescendants()) do
+if v.Name == "BobClone" then
+game:GetService("ReplicatedStorage").Godshand:FireServer(v:FindFirstChild("HumanoidRootPart"))
+end
+end
+elseif GloveSlap == "Tycoon" then
+for _, v in ipairs(workspace:GetDescendants()) do
+if v.Name == "BobClone" then
+game:GetService("ReplicatedStorage").GeneralHit:FireServer(v:FindFirstChild("HumanoidRootPart"))
+end
+end
+end
+end
+    end
+})
+
+
+
+
+        
+
