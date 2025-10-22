@@ -1,0 +1,18 @@
+if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil and game.Players.LocalPlayer.leaderstats.Slaps.Value >= 666 then
+OGlove = game.Players.LocalPlayer.leaderstats.Glove.Value
+fireclickdetector(workspace.Lobby.Ghost.ClickDetector)
+game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer()
+fireclickdetector(workspace.Lobby[OGlove].ClickDetector)
+task.wait(1)
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if v.Name  ~= "Humanoid" then
+v.Transparency = 0
+end
+end
+else
+game.StarterGui:SetCore("SendNotification", {
+    Title = "ERROR";
+    Text = "You need to have 666 slaps to use Ghost glove.";
+    Duration = "10";
+})
+end
